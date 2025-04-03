@@ -68,14 +68,14 @@ resource "aws_ecs_service" "ecs_app" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets          = 
+    subnets          = var.public_subnets
     security_groups  = [var.ecs_tasks]
     assign_public_ip = true
   }
 
   load_balancer {
     target_group_arn = var.target_group_arn
-    container_name   = "app-container"
+    container_name   = var.container_definition.name
     container_port   = 80
   }
 

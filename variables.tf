@@ -15,3 +15,19 @@ variable "container_definition" {
     }))
   })
 }
+
+
+variable "public_subnets" {
+  description = "The public subnets"
+  type = list(string)
+}
+
+variable "ecs_tasks" {
+  type = string
+  description = "ECS deployment tasks"
+}
+
+variable "target_group_arn" {
+  type = string
+  description = "Target ARN"
+}
