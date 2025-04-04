@@ -17,8 +17,8 @@ variable "container_definition" {
 }
 
 
-variable "public_subnets" {
-  description = "The public subnets"
+variable "target_subnets" {
+  description = "The target subnets to deploy the ECS clsuter"
   type = list(string)
 }
 
