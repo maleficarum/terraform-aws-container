@@ -68,7 +68,7 @@ resource "aws_ecs_service" "ecs_app" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets          = var.public_subnets
+    subnets          = var.target_subnets
     security_groups  = [var.ecs_tasks]
     assign_public_ip = true
   }
