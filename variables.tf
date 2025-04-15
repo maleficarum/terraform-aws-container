@@ -9,6 +9,7 @@ variable "container_definition" {
   type = object({
     name         = string,
     image        = string,
+    desired_count= number
     port_mapping = list(object({
         containerPort = number,
         hostPort = number
