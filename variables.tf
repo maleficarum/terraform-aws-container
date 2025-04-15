@@ -32,3 +32,8 @@ variable "target_group_arn" {
   type = string
   description = "Target ARN"
 }
+
+variable "health_check_application" {
+  type = string
+  description = "Health check endpoint for the application"
+}
