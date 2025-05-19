@@ -7,42 +7,42 @@ variable "container_definition" {
   description = "The container definition"
 
   type = object({
-    name         = string,
-    image        = string,
-    desired_count= number
+    name          = string,
+    image         = string,
+    desired_count = number
     port_mapping = list(object({
-        containerPort = number,
-        hostPort = number
+      containerPort = number,
+      hostPort      = number
     }))
   })
 }
 
 variable "target_subnets" {
   description = "The target subnets to deploy the ECS clsuter"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "ecs_tasks" {
-  type = string
+  type        = string
   description = "ECS deployment tasks"
 }
 
 variable "target_group_arn" {
-  type = string
+  type        = string
   description = "Target ARN"
 }
 
 variable "health_check_application" {
-  type = string
+  type        = string
   description = "Health check endpoint for the application"
 }
 
 #Environment data for the container
 variable "environment_variables" {
   type = list(object({
-    name = string,
+    name  = string,
     value = string
   }))
-  default = []
+  default     = []
   description = "Environment variables for the container"
 }
