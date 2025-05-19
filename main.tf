@@ -53,12 +53,30 @@ resource "aws_ecs_task_definition" "app_task" {
     essential    = true,
     portMappings = var.container_definition.port_mapping
     healthCheck = {
-        command     = ["CMD-SHELL", "curl -f http://$(hostname -i)/${var.health_check_application} || exit 1"]
-        interval    = 30
-        timeout     = 5
-        retries     = 3
-        startPeriod = 20
-      }    
+      command     = ["CMD-SHELL", "curl -f http://$(hostname -i)/${var.health_check_application} || exit 1"]
+      interval    = 30
+      timeout     = 5
+      retries     = 3
+      startPeriod = 20
+    }
+    environment = [
+      {
+        name  = "DB_ADDRESS"
+        value = var.domain_address
+      },
+      {
+        name  = "DB_FQDN"
+        value = var.domain_fqdn
+      },
+      {
+        name  = "DB_USERNAME"
+        value = var.domain_username
+      },
+      {
+        name  = "DB_PASSWORD"
+        value = var.domain_password
+      }
+    ]    
   }])
 
   tags = {
