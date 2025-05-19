@@ -54,7 +54,7 @@ resource "aws_ecs_task_definition" "app_task" {
     portMappings = var.container_definition.port_mapping
     healthCheck = {
       command     = ["CMD-SHELL", "curl -f http://$(hostname -i)/${var.health_check_application} || exit 1"]
-      interval    = 30
+      interval    = 60
       timeout     = 5
       retries     = 3
       startPeriod = 20
