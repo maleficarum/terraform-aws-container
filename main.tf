@@ -59,24 +59,7 @@ resource "aws_ecs_task_definition" "app_task" {
       retries     = 3
       startPeriod = 20
     }
-    environment = [
-      {
-        name  = "DB_ADDRESS"
-        value = var.domain_address
-      },
-      {
-        name  = "DB_FQDN"
-        value = var.domain_fqdn
-      },
-      {
-        name  = "DB_USERNAME"
-        value = var.domain_username
-      },
-      {
-        name  = "DB_PASSWORD"
-        value = var.domain_password
-      }
-    ]    
+    environment = local.final_environment_vars
   }])
 
   tags = {
