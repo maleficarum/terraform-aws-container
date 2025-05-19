@@ -37,24 +37,12 @@ variable "health_check_application" {
   description = "Health check endpoint for the application"
 }
 
-#DB Data
-variable "domain_address" {
-  type = string
-  description = "Domain Address"
-}
-
-variable "domain_fqdn" {
-  type = string
-  description = "Domain FQDN"
-}
-
-variable "domain_username" {
-  type = string
-  description = "Domain Username"
-}
-
-variable "domain_password" {
-  type = string
-  description = "Domain Password"
-  sensitive = true
+#Environment data for the container
+variable "environment_variables" {
+  type = list(object({
+    name = string,
+    value = string
+  }))
+  default = []
+  description = "Environment variables for the container"
 }
