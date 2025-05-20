@@ -46,3 +46,8 @@ variable "environment_variables" {
   default     = []
   description = "Environment variables for the container"
 }
+
+variable "region" {
+  type = string
+  description = "The region"
+}
