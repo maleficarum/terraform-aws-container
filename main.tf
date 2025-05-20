@@ -59,6 +59,14 @@ resource "aws_ecs_task_definition" "app_task" {
       retries     = 3
       startPeriod = 20
     }
+  log_configuration = {
+      logDriver = "awslogs"
+      options = {
+        awslogs-group         = aws_cloudwatch_log_group.app_logs.name
+        awslogs-region        = var.region
+        awslogs-stream-prefix = "ecs"
+      }
+    }    
     environment = local.final_environment_vars
   }])
 
@@ -88,4 +96,9 @@ resource "aws_ecs_service" "ecs_app" {
   }
 
   #depends_on = [aws_alb_listener.http]
+}
+
+resource "aws_cloudwatch_log_group" "app_logs" {
+  name              = "/ecs/${var.container_definition.name}"
+  retention_in_days = 1
 }
